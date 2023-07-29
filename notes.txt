@@ -86,3 +86,18 @@ location of java on the agent:
  =============================================================
  docker issue:
 sudo aa-remove-unknown
+
+============================================================================
+
+JENKINS-SONARQUBE:
+
+Inside Sonarqube->Administration->Webhooks->
+name of the webhook->
+url->jenkins-sonar-webhook	http://192.168.1.30:8080/sonarqube-webhook/
+
+Inside Jenkins->Manage Jenkins-Systems->Sonarqube servers->
+Name:sonarqube-community
+url: http://localhost:9000
+token name: jenkins-sonar-token
+========================================================================
+
