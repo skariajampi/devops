@@ -108,3 +108,6 @@ sonar
 git
 gradle
 cloudbees
+======================================================
+JENKINS-DOCKER:
+sudo usermod -a -G docker jenkins and restart machine, otherwise it will give permission error
