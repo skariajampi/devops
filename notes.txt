@@ -101,3 +101,10 @@ url: http://localhost:9000
 token name: jenkins-sonar-token
 ========================================================================
 
+plugins required in Jenkins:
+docker
+docker pipeline
+sonar
+git
+gradle
+cloudbees
