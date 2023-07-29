@@ -1,0 +1,88 @@
+One alternative would be install SDKMan as a shared component
+
+export SDKMAN_DIR="/usr/local/sdkman" && curl -s "https://get.sdkman.io" | bash
+
+Then install shared SDK component, i.e. gradle
+
+sdk install gradle 4.10.2
+
+Then for each user you want access to this 'shared' SDKs, just edit .bashrc or .profile file on the home path of those user and append these lines
+
+export SDKMAN_DIR="/usr/local/sdkman"
+[[ -s "/usr/local/sdkman/bin/sdkman-init.sh" ]] && source "/usr/local/sdkman/bin/sdkman-init.sh"
+
+==============================================================================
+
+sudo yum install java-17-amazon-corretto-headless
+
+==============================================================================
+maven: wget https://maven distribution.tar.gz
+
+tar -xvf ...
+export PATH=$PATH:/opt/apachemaven/bin/sdkman-init
+
+==============================================================================
+
+sonar :  wget sonar binaries.zip
+unzip
+
+before starting sonarqube docker instance
+
+sysctl -w vm.max_map_count=262144
+sudo nano /etc/sysctl.conf
+sudo sysctl -p
+
+==========================================================================
+chown ubuntu:ubuntu dir_name -R
+netstat -plunt |grrp -i :8081
+ps axu |grep -i java
+
+sudo hostnamectl set-hostname newNameHere
+ 
+============================================================================
+
+NEXUS:
+===================================
+admin/Password123
+
+docker run -d -p 10001:10001 -p 10002:10002 -v /home/skaria/docker/my-nexus-data:/nexus-data --name my-nexus sonatype/nexus3:3.0.0
+
+docker run -p 10001:10001 -p 10002:10002 -v /home/skaria/docker/my-nexus-data:/nexus-data --name my-nexus sonatype/nexus3:3.0.0
+
+docker login -u admin -p Password123 localhost:10002
+
+/etc/docker/daemon.json 
+{
+  "insecure-registries": [ "http://localhost:10002"]
+}
+
+docker-private: http connector port 8082
+version: "3.5"
+services:
+  nexus:
+    image: sonatype/nexus3
+    volumes:
+      - ~/docker/nexus/my-nexus-data:/nexus-data
+    ports:
+      - "10001:8081"
+      - "10002:8082"
+      - "10003:8083"
+	  
+	  docker tag your-own-image:1 localhost:10002/your-own-image:1
+docker push localhost:10002/your-own-image:1
+
+=====================================================================================================
+JENKINS
+==================
+location of jenkins dir on the agent: /home/jenkins/agent
+location of java on the agent:
+ /opt/java/openjdk/bin/java
+ 
+ generate ssh key using: ssh-keygen -t ed25519 -f jenkins_agent
+ 
+ ===========================================================================
+ 
+ https://qaautomation.expert/2023/02/01/how-to-create-jenkins-pipeline-for-gradle-project/
+ =============================================================
+ docker issue:
+sudo aa-remove-unknown
