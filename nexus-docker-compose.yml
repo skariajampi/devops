@@ -1,0 +1,12 @@
+version: "3.5"
+services:
+  nexus:
+    image: sonatype/nexus3
+    hostname: nexus
+    container_name: nexus    
+    volumes:
+      - ~/docker/nexus/my-nexus-data:/nexus-data
+    ports:
+      - "10001:8081"
+      - "10002:8082"
+      - "10003:8083"
