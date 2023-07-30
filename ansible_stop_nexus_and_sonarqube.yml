@@ -1,0 +1,12 @@
+---
+  - name: "Stop Nexus, Sonarqube and Login to Nexus Docker repository"
+    hosts: localhost
+    connection: local
+    tasks:
+
+      - name: "Stop Nexus and Sonarqube"
+        shell: "./stop_docker.sh"
+        register: "output"
+
+      - debug: var=output.stdout_lines
+

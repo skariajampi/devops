@@ -1,0 +1,24 @@
+---
+- name: "Sonarqube docker container logs"
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: "get Sonarqube port"
+      command: docker inspect -f \{\{' index .NetworkSettings.Ports "9000/tcp" 0 "HostPort" '\}\} sonarqube
+      register: "Sonarqube_port"
+
+    - name: "Wait for Sonarqube docker container to start"
+      wait_for:
+        port: "{{ Sonarqube_port.stdout }}"
+        delay: 5
+        state: started
+        timeout: 10
+
+    - name: "Sonarqube docker container logs"
+      shell: "docker logs sonarqube"
+      register: "output"
+
+    - name: Show test output
+      debug:
+        msg: "{{ output }}"
+

@@ -1,0 +1,24 @@
+---
+  - name: "Nexus docker container logs"
+    hosts: localhost
+    connection: local
+    tasks:
+      - name: "get nexus port"
+        command: docker inspect -f \{\{' index .NetworkSettings.Ports "8081/tcp" 0 "HostPort" '\}\} nexus
+        register: "nexus_port"
+
+      - name: "Wait for nexus docker container to start"
+        wait_for:
+          port: "{{ nexus_port.stdout }}"
+          delay: 5
+          state: started
+          timeout: 10
+
+      - name: "Nexus docker container logs"
+        shell: "docker logs nexus"
+        register: "output"
+
+      - name: Show test output
+        debug:
+          msg: "{{ output }}"
+

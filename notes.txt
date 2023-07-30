@@ -25,7 +25,7 @@ export PATH=$PATH:/opt/apachemaven/bin/sdkman-init
 
 sonar :  wget sonar binaries.zip
 unzip
-
+sonar token: squ_2205c22258fabddbe1c431cca45d67861901e5a2
 before starting sonarqube docker instance
 
 sysctl -w vm.max_map_count=262144
@@ -111,3 +111,5 @@ cloudbees
 ======================================================
 JENKINS-DOCKER:
 sudo usermod -a -G docker jenkins and restart machine, otherwise it will give permission error
+
+docker pull repository/docker-private/configservice:21
