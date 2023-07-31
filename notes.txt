@@ -25,7 +25,7 @@ export PATH=$PATH:/opt/apachemaven/bin/sdkman-init
 
 sonar :  wget sonar binaries.zip
 unzip
-sonar token: squ_2205c22258fabddbe1c431cca45d67861901e5a2
+sonar token: squ_ca3f33b4e93d47e8eaf62101922f0e7b3d9646d2
 before starting sonarqube docker instance
 
 sysctl -w vm.max_map_count=262144
@@ -113,3 +113,8 @@ JENKINS-DOCKER:
 sudo usermod -a -G docker jenkins and restart machine, otherwise it will give permission error
 
 docker pull repository/docker-private/configservice:21
+
+to remove docker from maching:
+https://www.golinuxcloud.com/ubuntu-uninstall-docker/
+https://phoenixnap.com/kb/docker-permission-denied
+https://qiita.com/leechungkyu/items/86cad0396cf95b3b6973
