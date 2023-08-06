@@ -163,3 +163,5 @@ OR
 
 http://public iof ec2 instance:32751/configservice/actuator
 http://18.130.221.95:32751/configservice/actuator
+
+https://nbodev.medium.com/spring-boot-docker-kubernetes-eks-59bf1843e21a
