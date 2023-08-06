@@ -9,7 +9,7 @@
 
       - name: "Wait for nexus docker container to start"
         wait_for:
-          port: "{{ nexus_port.stdout }}"
+          port: "{{ nexus _port.stdout }}"
           delay: 5
           state: started
           timeout: 10

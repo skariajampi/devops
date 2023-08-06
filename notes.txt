@@ -118,3 +118,48 @@ to remove docker from maching:
 https://www.golinuxcloud.com/ubuntu-uninstall-docker/
 https://phoenixnap.com/kb/docker-permission-denied
 https://qiita.com/leechungkyu/items/86cad0396cf95b3b6973
+==============================================================================
+
+EKS:
+==========
+
+eksctl create cluster --name configservice_eks_cluster  \
+--region eu-west-2 \
+--node-type t2.medium \
+--nodes-min 2 \
+--nodes-max 2 \
+--zones <AZ-1>,<AZ-2>
+
+eksctl create cluster --name configservice-eks-cluster  \
+--region eu-west-2 \
+--node-type t2.medium \
+--nodes-min 2 \
+--nodes-max 2
+
+eksctl delete cluster configservice-eks-cluster --region eu-west-2
+
+eksctl utils describe-stacks --region=eu-west-2 --cluster=configservice-eks-cluster'
+
+enable cloudwatch logs with
+eksctl utils update-cluster-logging --enable-types={SPECIFY-YOUR-LOG-TYPES-HERE (e.g. all)} --region=eu-west-2 --cluster=configservice-eks-cluster
+
+https://blog.gitguardian.com/how-to-handle-secrets-in-kubernetes/
+https://aws.amazon.com/blogs/security/how-to-use-aws-secrets-configuration-provider-with-kubernetes-secrets-store-csi-driver/
+https://kubernetes.io/docs/tasks/inject-data-application/distribute-credentials-secure/
+https://www.tutorialworks.com/spring-boot-kubernetes-override-properties/
+https://www.mirantis.com/blog/cloud-native-5-minutes-at-a-time-using-kubernetes-secrets-with-environment-variables-and-volume-mounts/
+==========================================================
+
+accessing Spring boot app:
+NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)          AGE
+configservice-service   LoadBalancer   10.100.144.151   ab15eeaa81e474561a34357661e4aaa0-1079134627.eu-west-2.elb.amazonaws.com   8080:32751/TCP   25m
+kubernetes              ClusterIP      10.100.0.1       <none>                                                                    443/TCP          44m
+
+http://external-ip of service:8080/configservice/actuator
+
+http://ab15eeaa81e474561a34357661e4aaa0-1079134627.eu-west-2.elb.amazonaws.com:8080/configservice/actuator
+http://ab15eeaa81e474561a34357661e4aaa0-1079134627.eu-west-2.elb.amazonaws.com:8080/configservice/actuator
+OR
+
+http://public iof ec2 instance:32751/configservice/actuator
+http://18.130.221.95:32751/configservice/actuator
