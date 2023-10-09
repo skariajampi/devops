@@ -1,4 +1,4 @@
-docker run --name synchrotekdb -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=Password123 -e MYSQL_DATABASE=synchrotekdb -p 3306:3306 -d mysql/mysql-server:5.7
+docker run --name synchrotekdb -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=Password123 -e MYSQL_DATABASE=synchrotekdb -p 3306:3306 -d mysql/mysql-server:8.1.0
 
 docker exec -it synchrotekdb bash
 docker exec -it synchrotekdb mysql -uroot -p
@@ -7,4 +7,24 @@ Password123
 create database synchrotekdb;
 create user 'synchrotek'@'%' identified by 'Password123';
 grant all privileges on synchrotekdb.* to 'synchrotek'@'%';
+flush privileges;
+
+create database dating;
+create user 'webuser'@'%' identified by 'aSecretPass';
+grant all privileges on dating.* to 'webuser'@'%';
+flush privileges;
+
+create database roytuts;
+create user 'roytuts'@'%' identified by 'roytuts';
+grant all privileges on roytuts.* to 'roytuts'@'%';
+flush privileges;
+
+create database flyway_demo;
+create user 'flyway_demo'@'%' identified by 'flyway_demo';
+grant all privileges on flyway_demo.* to 'flyway_demo'@'%';
+flush privileges;
+
+create database flyway_demo_project;
+create user 'flyway_demo_project'@'%' identified by 'flyway_demo_project';
+grant all privileges on flyway_demo_project.* to 'flyway_demo_project'@'%';
 flush privileges;
