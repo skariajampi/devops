@@ -155,7 +155,7 @@ NAME                    TYPE           CLUSTER-IP       EXTERNAL-IP             
 configservice-service   LoadBalancer   10.100.144.151   ab15eeaa81e474561a34357661e4aaa0-1079134627.eu-west-2.elb.amazonaws.com   8080:32751/TCP   25m
 kubernetes              ClusterIP      10.100.0.1       <none>                                                                    443/TCP          44m
 
-http://external-ip of service:8080/configservice/actuator
+http://external-ip of service:8080/c
 
 http://ab15eeaa81e474561a34357661e4aaa0-1079134627.eu-west-2.elb.amazonaws.com:8080/configservice/actuator
 http://ab15eeaa81e474561a34357661e4aaa0-1079134627.eu-west-2.elb.amazonaws.com:8080/configservice/actuator
@@ -165,3 +165,7 @@ http://public iof ec2 instance:32751/configservice/actuator
 http://18.130.221.95:32751/configservice/actuator
 
 https://nbodev.medium.com/spring-boot-docker-kubernetes-eks-59bf1843e21a
+
+local configservice:
+http://localhost:8888/configservice/management
+make sure docker port mapping is right, i.e.-p 8888:8889
